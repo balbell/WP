@@ -1,0 +1,146 @@
+<html>
+    <head>
+
+    </head>
+    <body style="background-color: #cabbd2;">
+        <?php
+            $fullname = $_POST['fullname'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $phone = $_POST['phone'] ?? '';
+            $address = $_POST['address'] ?? '';
+            $date = $_POST['date'] ?? '';
+            $paymethod = $_POST['payment'] ?? '';
+
+            $quantity1 = $quantity2 = $quantity3 = $quantity4 = $quantity5 = $quantity6 = 0;
+
+            // Check if checkbox is checked for each item, if checked, assign the quantity value
+            if(isset($_POST['item1'])) $quantity1 = $_POST['quantity1'] ?? 0;
+            if(isset($_POST['item2'])) $quantity2 = $_POST['quantity2'] ?? 0;
+            if(isset($_POST['item3'])) $quantity3 = $_POST['quantity3'] ?? 0;
+            if(isset($_POST['item4'])) $quantity4 = $_POST['quantity4'] ?? 0;
+            if(isset($_POST['item5'])) $quantity5 = $_POST['quantity5'] ?? 0;
+            if(isset($_POST['item6'])) $quantity6 = $_POST['quantity6'] ?? 0;
+
+            $sale1 = $quantity1 * 3999.00;
+            $sale2 = $quantity2 * 2599.00;
+            $sale3 = $quantity3 * 239.00;
+            $sale4 = $quantity4 * 25.99;
+            $sale5 = $quantity5 * 124.00;
+            $sale6 = $quantity6 * 339.00;
+
+            $total_sale = $sale1 + $sale2 + $sale3 + $sale4 + $sale5 + $sale6;
+
+            $discount = ($total_sale > 2000) ? ($total_sale * 0.05) : 0;
+
+            $tax = $total_sale * 0.06;
+
+            $amount = $total_sale + $tax - $discount;
+        ?>
+
+        <h1 align="center" style="background-color: #8831ba; color: white;">Penang PC Shop Payment Details</h1>
+
+        <table width="95%" border="1" align="center" style="background-color: #f7f7f7;">
+            <tr>
+                <td>Full Name:</td>
+                <td><input type="text" value="<?php echo $fullname; ?>" name="fullname" readonly style="width: 550px;"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" value="<?php echo $email; ?>" name="email" readonly style="width: 550px;"></td>    
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td><input type="text" value="<?php echo $phone; ?>" name="phone" readonly style="width: 550px;"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><textarea rows="2" cols="30" name="address" readonly style="width: 550px; height: 150px;"><?php echo $address; ?></textarea></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><input type="date" id="date" name="date" value="<?php echo $date; ?>" readonly style="width: 550px;"></td>
+            </tr>
+        </table>
+
+        <br>
+
+        <table width="95%" border="1" align="center" style="background-color: #f7f7f7;">
+            <tr>
+                <th colspan="4" align="center" style="background-color: #8831ba; color: white;">Product Details</th>
+            </tr>
+            <tr>
+                <th>Item Name</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Item Total</th>
+            </tr>
+            <tr>
+                <td>HP Pavilion x360 14 inch 2-in-1 Laptop 14-ek1039TU Silver</td>
+                <td>RM 3,999.00</td>
+                <td  align="center"><?php echo $quantity1; ?></td>
+                <td>RM <?php echo number_format($sale1, 2); ?></td>
+            </tr>
+            <tr>
+                <td>HP 24-inc All-in-One Desktop PC</td>
+                <td>RM 2,599.00</td>
+                <td align="center"><?php echo $quantity2; ?></td>
+                <td>RM <?php echo number_format($sale2, 2); ?></td>
+            </tr>
+            <tr>
+                <td>Western Digital My Passport 1TB USB 3.0 External Hard Drives New Design</td>
+                <td>RM 239.00</td>
+                <td  align="center"><?php echo $quantity3; ?></td>
+                <td>RM <?php echo number_format($sale3, 2); ?></td>
+            </tr>
+            <tr>
+                <td>2.4GHz Mini Wireless Optical Game Mouse / USB Receiver</td>
+                <td>RM 25.99</td>
+                <td  align="center"><?php echo $quantity4; ?></td>
+                <td>RM <?php echo number_format($sale4, 2); ?></td>
+            </tr>
+            <tr>
+                <td>Anti Thief Backpack Business Fits for 15.6 inch Laptop USB Charging Water Repellent</td>
+                <td>RM 124.00</td>
+                <td  align="center"><?php echo $quantity5; ?></td>
+                <td>RM <?php echo number_format($sale5, 2); ?></td>
+            </tr>
+            <tr>
+                <td>Razer BlackShark V2 Multi-Platform Wired E-Sports Headset</td>
+                <td>RM 339.00</td>
+                <td  align="center"><?php echo $quantity6; ?></td>
+                <td>RM <?php echo number_format($sale6, 2); ?></td>
+            </tr>
+        </table>
+
+        <br>
+
+        <table width="95%" border="1" align="center" style="background-color: #f7f7f7;">
+            <tr>
+                <th colspan="2" style="background-color: #8831ba; color: white;">Bill</th>
+            </tr>
+            <tr>
+                <td>PAYMENT METHOD</td>
+                <td align="center"><?php echo htmlspecialchars($paymethod); ?></td>
+            </tr>
+            <tr>
+                <td>Total Sales</td>
+                <td>RM <?php echo number_format($total_sale, 2); ?></td>
+            </tr>
+            <tr>
+                <td>Discount 5% (if total sales above RM2000)</td>
+                <td>RM <?php echo number_format($discount, 2); ?></td>
+            </tr>
+            <tr>
+                <td>6% SST charged</td>
+                <td>RM <?php echo number_format($tax, 2); ?></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td style="background-color: purple; color: white;">RM <?php echo number_format($amount, 2); ?> </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="button" onclick="history.back()" value="Back"></td>
+            </tr>
+        </table>
+    </body>
+</html>
