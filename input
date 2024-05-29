@@ -1,0 +1,124 @@
+<html>
+    <head>
+    </head>
+    <body style="background-color: #cabbd2;">
+    <script>
+    function toggleQuantity(quantityId, checkbox) {
+        var quantityInput = document.getElementsByName(quantityId)[0];
+        var includeHiddenInput = document.getElementsByName('include' + quantityId)[0];
+
+        if (!checkbox.checked) {
+            quantityInput.value = 0;
+            includeHiddenInput.value = 0;
+        } else {
+            quantityInput.value = 1; // Set quantity to 1 when checkbox is checked
+            includeHiddenInput.value = 1;
+        }
+        quantityInput.disabled = !checkbox.checked;
+        if (checkbox.checked) {
+            quantityInput.removeAttribute('required');
+        } else {
+            quantityInput.setAttribute('required', 'required');
+        }
+    }
+
+    function clearForm() {
+        document.getElementById("myForm").reset();
+    }
+    </script>
+
+
+            
+        <h1 align="center" style="background-color: #8831ba; color: white;">Welcome To Penang PC Shop</h1>
+
+        <form id="myForm" action="rec.php" method="post">
+            <div>
+            <table width="95%" border="1" align="center" style="background-color: #f7f7f7;">
+                <tr>
+                    <th width="10%" align="left">Full Name: </th>
+                    <td><input type="text" name="fullname" hint="fullname" style="width: 550px;" required></td>
+                </tr>
+                <tr>
+                    <th  align="left">Email: </th>
+                    <td><input type="email" name="email" hint="email" style="width: 550px;" required></td>
+                </tr>
+                <tr>
+                    <th  align="left">Phone Number: </th>
+                    <td><input type="text" name="phone" hint="phone number" style="width: 550px;" required></td>
+                </tr>
+                <tr>
+                    <th  align="left">Address: </th>
+                    <td><input type="textarea" name="address" hint="address" style="width: 550px; height: 150px;" required></td>
+                </tr>
+                <tr>
+                    <th  align="left">Date: </th>
+                    <td><input type="date" name="date" hint="date" style="width: 350px;" required min="2023-12-01" max="2030-12-31"></td>
+                </tr>
+            </table>
+            </div>
+        <br>
+            <div>
+            <table width="95%" border="1" align="center" style="background-color: #f7f7f7;">
+                <tr style="background-color: #8831ba; color: white;">
+                    <th colspan="2">Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr>
+                    <td><input 	type="checkbox" name="item1" value="1" onchange="toggleQuantity('quantity1', this)"></td>
+                    <td>HP Pavilion x360 14 inch 2-in-1 Laptop 14-ek1039TU Silver </td>
+                    <td align="center">RM 3,999.00</td>
+                    <td align="center"><input type="number" name="quantity1" required></td>
+                </tr>
+                <tr>
+                    <td><input 	type="checkbox" name="item2" value="1" onchange="toggleQuantity('quantity2', this)"></td>
+                    <td>HP 24-inc All-in-One Desktop PC</td>
+                    <td align="center">RM 2,599.00</td>
+                    <td align="center"><input type="number" name="quantity2" required></td>
+                </tr>
+                <tr>
+                    <td><input 	type="checkbox" name="item3" value="1" onchange="toggleQuantity('quantity3', this)"></td>
+                    <td>Western Digital My Passport 1TB USB 3.0 External Hard Drives New Design</td>
+                    <td align="center">RM 239.00</td>
+                    <td align="center"><input type="number" name="quantity3" required></td>
+                </tr>
+                <tr>
+                    <td><input 	type="checkbox" name="item4" value="1" onchange="toggleQuantity('quantity4', this)"></td>
+                    <td>2.4GHz Mini Wireless Optical Game Mouse / USB Receiver</td>
+                    <td align="center">RM 25.99 </td>
+                    <td align="center"><input type="number" name="quantity4" required></td>
+                </tr>
+                <tr>
+                    <td><input 	type="checkbox" name="item5" value="1" onchange="toggleQuantity('quantity5', this)"></td>
+                    <td>Anti Thief Backpack Business Fits for 15.6 inch Laptop USB Charging Water Repellent</td>
+                    <td align="center">RM 124.00</td>
+                    <td align="center"><input type="number" name="quantity5" required></td>
+                </tr>
+                <tr>
+                    <td><input 	type="checkbox" name="item6" value="1" onchange="toggleQuantity('quantity6', this)"></td>
+
+                    <td>Razer BlackShark V2 Multi-Platform Wired E-Sports Headset</td>
+                    <td align="center">RM 339.00</td>
+                    <td align="center"><input type="number" name="quantity6" required></td>
+                </tr>
+            </table>
+            </div>
+
+            <div style="background-color: #f7f7f7;">
+            <p>Payment Method: </p>
+            <input type="radio" name="payment" value="Cash" required>
+            <label>Cash<label><br>
+            <input type="radio" name="payment" value="Visa/Mastercard">
+            <label>Visa/Mastercard<label><br>
+            <input type="radio" name="payment" value="Online Transfer">
+            <label>Online Transfer<label><br>
+            <p style="color: blue;">6% SST Sales Tax rate will be charged on computer products</p>
+            </div>
+
+            <div>
+            <input type="submit" name="submit" value="Submit" style="width:150px; height:30px; display: inline-block; margin: 10px; margin-left: 500px;">
+            <input type="submit" name="clear" value="Clear" style="width:150px; height:30px; display: inline-block; margin: 10px; margin-left: 30px;" onclick="clearForm()">
+            </div>
+        </form>
+    </body>
+</html>
